@@ -1,3 +1,5 @@
+import pandas as pd
+
 #print('TestFile')
 
 #print("Hello its Davis")
@@ -19,10 +21,13 @@ class Schedule:
             if i['Course code'] == code:
                 self.schedule.remove(i)
                 break
+    def show_schedule(self):
+        df = pd.DataFrame(self.schedule)
+        print(df)
     # will need a method with a with stateent to store courses for self.schedule, that way self.schedule can maintain updates as we add and remove classes
-        
+
 
 
 s1 = Schedule('Devin')
 s1.add_class()
-print(s1.schedule)
+print(s1.show_schedule())
