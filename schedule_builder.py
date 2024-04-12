@@ -17,6 +17,12 @@ class Schedule:
         self.schedule = []
     
     def coursecode_validation(self, course_code):
+        """Validates the course code format.
+        
+        Args: course_code (str): course code validation.
+        
+        Returns: bool: True if the input course code is valid, otherwise False.
+        """
         expr = r"""(?x)
 ^(?P<course_name>[a-zA-Z]+\d\d\d)"""
         if re.match(expr, course_code):
