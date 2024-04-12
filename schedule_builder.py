@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 #print('TestFile')
 
@@ -15,12 +16,23 @@ class Schedule:
         self.name = name
         self.schedule = []
     
+    def coursecode_validation(self, course_code):
+        expr = r"""(?x)
+^(?P<course_name>[a-zA-Z]+\d\d\d)"""
+        if re.match(expr, course_code):
+            return True
+        else: 
+            return False
+    
     def add_class(self):
         course_code = input('Course code: ')
-        credits = input('Credits: ')
-        day = input('Day: ')
-        time = input('Time: ')
-        self.schedule.append({'Course code': course_code, 'Credits': credits, 'Day': day, 'Time': time})
+        if self.coursecode_validation(course_code):
+            credits = input('Credits: ')
+            day = input('Day: ')
+            time = input('Time: ')
+            self.schedule.append({'Course code': course_code, 'Credits': credits, 'Day': day, 'Time': time})
+        else: 
+            print("Invalid course code. Enter a valid course code.")
     def clear_schedule(self):
         self.schedule = []
     def drop_class(self, code):
