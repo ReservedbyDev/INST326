@@ -12,7 +12,8 @@ def classOrganizer(schedule):
     Returns:
         list: the schedule organized by course code and credits
     """
-    sorted_schedule = sorted(schedule, key=lambda x: (x['Course code'], x['Credits']))
+    sorted_schedule = sorted(schedule, key=lambda x: (x['Course code'], 
+                                                      x['Credits']))
     return sorted_schedule
 
 class Schedule:
@@ -42,7 +43,8 @@ class Schedule:
             credits = input('Credits: ')
             day = input('Day: ')
             time = input('Time: ')
-            self.schedule.append({'Course code': course_code, 'Credits': credits, 'Day': day, 'Time': time})
+            self.schedule.append({'Course code': course_code, 'Credits': credits
+                                  , 'Day': day, 'Time': time})
         else: 
             print("Invalid course code. Enter a valid course code.")
             
@@ -59,11 +61,13 @@ class Schedule:
             
     def show_schedule(self):
         organized_schedule = classOrganizer(self.schedule)
-        df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits', 'Day', 'Time'])
+        df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits'
+                                                       , 'Day', 'Time'])
         print(df)
     
 
-    # will need a method with a with stateent to store courses for self.schedule, that way self.schedule can maintain updates as we add and remove classes
+    # will need a method with a with stateent to store courses for self.schedule
+    # , that way self.schedule can maintain updates as we add and remove classes
 
 
 
