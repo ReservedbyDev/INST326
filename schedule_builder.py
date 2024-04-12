@@ -1,11 +1,7 @@
 import pandas as pd
 import re
 
-#print('TestFile')
 
-#print("Hello its Davis")
-
-#print("Hello its Andy")
 
 def classOrganizer(schedule):
     """takes a schedule organizes it and returns it. 
