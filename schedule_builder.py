@@ -23,9 +23,11 @@ class Schedule:
         '''Initializes schedule given a person's name
 
         Args:
-            name (str): The name of the person that the schedule is being made for.
+            name (str): The name of the person that the schedule is being made
+            for.
         
-        Attributes: schedule(list) = list of dictionaries built from each class inputed into the list.
+        Attributes: schedule(list) = list of dictionaries built from each class
+        inputed into the list.
         '''        
         self.name = name
         self.schedule = []
@@ -68,7 +70,9 @@ class Schedule:
         '''Method used to drop a class from the schedule attribute
 
         Args:
-            code (str): Course code to be removed from the attribute. Breaks out of the loop once it is found because each course should only be listed once.
+            code (str): Course code to be removed from the attribute. Breaks out
+            of the loop once it is found because each course should only be 
+            listed once.
         '''        
         for course in self.schedule:
             if course['Course code'] == code:
@@ -78,7 +82,8 @@ class Schedule:
             print("Course not found in schedule.")
             
     def show_schedule(self):
-        '''Takes the schedule object and creates a dataframe object neatly displaying the class schedule for the given student. 
+        '''Takes the schedule object and creates a dataframe object neatly 
+        displaying the class schedule for the given student. 
         '''        
         organized_schedule = classOrganizer(self.schedule)
         df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits'
