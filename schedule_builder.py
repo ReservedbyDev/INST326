@@ -17,7 +17,16 @@ def classOrganizer(schedule):
     return sorted_schedule
 
 class Schedule:
+    '''Class that creates the schedule object, takes in a name as an object.
+    '''    
     def __init__(self,name):
+        '''Initializes schedule given a person's name
+
+        Args:
+            name (str): The name of the person that the schedule is being made for.
+        
+        Attributes: schedule(list) = list of dictionaries built from each class inputed into the list.
+        '''        
         self.name = name
         self.schedule = []
     
@@ -38,6 +47,8 @@ class Schedule:
             return False
     
     def add_class(self):
+        '''Method used to add classes to the self.schedule attribute. 
+        '''        
         course_code = input('Course code: ')
         if self.coursecode_validation(course_code):
             credits = input('Credits: ')
@@ -49,9 +60,16 @@ class Schedule:
             print("Invalid course code. Enter a valid course code.")
             
     def clear_schedule(self):
+        '''Method to clear the self.schedule object. 
+        '''        
         self.schedule = []
         
     def drop_class(self, code):
+        '''Method used to drop a class from the schedule attribute
+
+        Args:
+            code (str): Course code to be removed from the attribute. Breaks out of the loop once it is found because each course should only be listed once.
+        '''        
         for course in self.schedule:
             if course['Course code'] == code:
                 self.schedule.remove(course)
@@ -60,6 +78,8 @@ class Schedule:
             print("Course not found in schedule.")
             
     def show_schedule(self):
+        '''Takes the schedule object and creates a dataframe object neatly displaying the class schedule for the given student. 
+        '''        
         organized_schedule = classOrganizer(self.schedule)
         df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits'
                                                        , 'Day', 'Time'])
