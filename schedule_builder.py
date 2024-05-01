@@ -41,7 +41,9 @@ class Schedule:
         Returns: 
             bool: True if the input course code is valid, otherwise False.
         """
-        return bool(re.match(r'^[a-zA-Z]{4}\d{3}$', course_code))
+        expr = r"""(?x)
+^(?P<course_name>[a-zA-Z]{4}\d{3}$)"""
+        return bool(re.match(expr, course_code))
     
     def add_class(self):
         '''Method used to add classes to the self.schedule attribute. 
