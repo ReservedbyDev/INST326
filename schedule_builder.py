@@ -41,25 +41,21 @@ class Schedule:
         Returns: 
             bool: True if the input course code is valid, otherwise False.
         """
-        expr = r"""(?x)
-^(?P<course_name>[a-zA-Z]+\d\d\d)"""
-        if re.match(expr, course_code):
-            return True
-        else: 
-            return False
+        return bool(re.match(r'^[a-zA-Z]{4}\d{3}$', course_code))
     
     def add_class(self):
         '''Method used to add classes to the self.schedule attribute. 
         '''        
-        course_code = input('Course code: ')
-        if self.coursecode_validation(course_code):
-            credits = input('Credits: ')
-            day = input('Day: ')
-            time = input('Time: ')
-            self.schedule.append({'Course code': course_code, 'Credits': credits
-                                  , 'Day': day, 'Time': time})
-        else: 
-            print("Invalid course code. Enter a valid course code.")
+        while True:
+            course_code = input('Course code: ')
+            if self.coursecode_validation(course_code):
+                break
+            else:
+                print("Invalid course code. Enter a valid course code.")
+        credits = input('Credits: ')
+        day = input('Day: ')
+        time = input('Time: ')
+        self.schedule.append({'Course code': course_code, 'Credits': credits, 'Day': day, 'Time': time})
             
     def clear_schedule(self):
         '''Method to clear the self.schedule object. 
