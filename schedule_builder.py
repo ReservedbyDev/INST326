@@ -88,7 +88,7 @@ class Schedule:
                                                        , 'Day', 'Time'])
         return df
     
-    def __str_(self):
+    def __str__(self):
         return f"Schedule Name: {self.name} Schedule: {self.schedule}"
     
     def __len__(self):
