@@ -42,7 +42,7 @@ class Schedule:
             bool: True if the input course code is valid, otherwise False.
         """
         expr = r"""(?x)
-^(?P<course_name>[a-zA-Z]{4}\d{3}$)"""
+^(?P<course_code>[a-zA-Z]{4}\d{3}$)"""
         return bool(re.match(expr, course_code))
     
     def add_class(self):
@@ -86,7 +86,13 @@ class Schedule:
         organized_schedule = classOrganizer(self.schedule)
         df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits'
                                                        , 'Day', 'Time'])
-        print(df)
+        return df
+    
+    def __str_(self):
+        return f"Schedule Name: {self.name} Schedule: {self.schedule}"
+    
+    def __len__(self):
+        return len(self.schedule)
     
 
     # will need a method with a with stateent to store courses for self.schedule
@@ -96,5 +102,10 @@ class Schedule:
 
 s1 = Schedule('Devin')
 s1.add_class()
-print(s1.show_schedule())
+schedule_df = s1.show_schedule()
+if not schedule_df.empty:
+    print(schedule_df)
+    
+print(s1)
+print(f"Number of courses in {s1.name}'s schedule: {len(s1)}")
 
