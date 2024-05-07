@@ -82,8 +82,8 @@ class Schedule:
         '''Loads the student schedule
         '''        
         try:
-            with open(f"{self.name}_schedule.json", 'r') as file:
-                self.schedule = json.load(file)
+            with open(f"{self.name}_schedule.json", 'r') as f1:
+                self.schedule = json.load(f1)
         except FileNotFoundError:
             self.schedule=[]
             print('New schedule created')
@@ -97,7 +97,7 @@ class Schedule:
         self.save_schedule()
         
         
-    def drop_class(self, code):
+    def drop_class(self):
         '''Method used to drop a class from the schedule attribute
 
         Args:
@@ -106,6 +106,7 @@ class Schedule:
             listed once.
         ''' 
         self.load_schedule()      
+        code = input('Course Code to drop: ').upper()
         for course in self.schedule:
             if course['Course code'] == code:
                 self.schedule.remove(course)
@@ -126,24 +127,16 @@ class Schedule:
             return print('No schedule to display')
     
     def __str__(self):
-        return f"Schedule Name: {self.name} Schedule: {self.schedule}"
+        return f"Number of courses in {s1.name}'s schedule: {len(s1)}"
     
     def __len__(self):
         return len(self.schedule)
     
 
-    # will need a method with a with statement to store courses for self.schedule
-    # , that way self.schedule can maintain updates as we add and remove classes
-
-
-
-
 s1 = Schedule('Devin')
 #s1.clear_schedule()
 #s1.add_class()
+#s1.drop_class()
 schedule_df = s1.show_schedule()
 print(schedule_df)
-    
 print(s1)
-print(f"Number of courses in {s1.name}'s schedule: {len(s1)}")
-
