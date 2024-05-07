@@ -88,7 +88,6 @@ class Schedule:
         except FileNotFoundError:
             self.schedule=[]
             print('New schedule created')
-            
     
     def clear_schedule(self):
         '''Method to clear the self.schedule object. 
