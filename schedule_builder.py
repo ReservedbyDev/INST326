@@ -60,7 +60,7 @@ class Schedule:
         '''Method used to add classes to the self.schedule attribute. 
         '''      
         while True:
-            course_code = input('Course code: ')
+            course_code = input('Course code: ').upper()
             if self.coursecode_validation(course_code):
                 break
             else:
@@ -118,10 +118,12 @@ class Schedule:
         '''Takes the schedule object and creates a dataframe object neatly 
         displaying the class schedule for the given student. 
         '''        
-        organized_schedule = classOrganizer(self.schedule)
-        df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits'
-                                                       , 'Day', 'Time'])
-        return df
+        if len(self.schedule) != 0:
+            organized_schedule = classOrganizer(self.schedule)
+            df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits', 'Days', 'Time'])
+            return df
+        else:
+            return print('No schedule to display')
     
     def __str__(self):
         return f"Schedule Name: {self.name} Schedule: {self.schedule}"
@@ -137,11 +139,10 @@ class Schedule:
 
 
 s1 = Schedule('Devin')
-s1.clear_schedule()
+#s1.clear_schedule()
 #s1.add_class()
 schedule_df = s1.show_schedule()
-if not schedule_df.empty:
-    print(schedule_df)
+print(schedule_df)
     
 print(s1)
 print(f"Number of courses in {s1.name}'s schedule: {len(s1)}")
