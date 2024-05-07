@@ -135,8 +135,8 @@ class Schedule:
     
 
 s1 = Schedule('Devin')
-#s1.clear_schedule()
-s1.add_class()
+s1.clear_schedule()
+#s1.add_class()
 #s1.drop_class()
 schedule_df = s1.show_schedule()
 print(schedule_df)
