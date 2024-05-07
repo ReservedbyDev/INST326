@@ -73,11 +73,12 @@ class Schedule:
         self.save_schedule()
     
     def save_schedule(self):
-        '''Saves the student schedule
-        '''        
-        with open(f'{self.name}_schedule.json','w') as f2:
+        '''Saves the student schedule to a JSON file
+        '''
+        file_name = input("Enter the file name to save the schedule: ")        
+        with open(file_name, 'w') as f2:
             json.dump(self.schedule, f2)
-    
+            
     def load_schedule(self):
         '''Loads the student schedule
         '''        
@@ -135,8 +136,9 @@ class Schedule:
 
 s1 = Schedule('Devin')
 #s1.clear_schedule()
-#s1.add_class()
+s1.add_class()
 #s1.drop_class()
 schedule_df = s1.show_schedule()
 print(schedule_df)
 print(s1)
+s1.save_schedule
