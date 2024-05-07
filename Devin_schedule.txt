@@ -1,0 +1,1 @@
+[{"Course code": "INST326", "Credits": "3", "Days": "MW", "Time": "11:00"}]

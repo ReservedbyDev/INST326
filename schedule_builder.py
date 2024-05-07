@@ -141,4 +141,3 @@ s1.add_class()
 schedule_df = s1.show_schedule()
 print(schedule_df)
 print(s1)
-s1.save_schedule
