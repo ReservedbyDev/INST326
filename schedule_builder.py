@@ -100,7 +100,7 @@ class Schedule:
         self.schedule = []
         self.save_schedule()
 
-    def drop_class(self, code):
+    def drop_class(self):
         '''Method used to drop a class from the schedule attribute
 
         Args:
@@ -109,6 +109,7 @@ class Schedule:
             listed once.
         '''
         self.load_schedule()
+        code = input('Course code to drop: ').upper()
         for course in self.schedule:
             if course['Course code'] == code:
                 self.schedule.remove(course)
@@ -138,9 +139,12 @@ class Schedule:
 
 
 s1 = Schedule('Devin')
-# s1.clear_schedule()
-# s1.add_class()
-#s1.drop_class()
+s1.clear_schedule()
+s1.add_class()
+s1.add_class()
+s1.add_class()
+s1.add_class()
+s1.drop_class()
 schedule_df = s1.show_schedule()
 print(schedule_df)
 
