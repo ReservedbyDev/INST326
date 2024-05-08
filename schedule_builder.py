@@ -52,8 +52,7 @@ class Schedule:
         courseid = []
         with open('202008.json', 'r') as f1:
             courses = json.load(f1)
-            for course in courses:
-                courseid.append(course['course_id'])
+            courseid = [course['course_id'] for course in courses]
         if course_code in courseid:
             expr = r"""(?x)^(?P<course_code>[a-zA-Z]{4}\d{3}$)"""
             return bool(re.match(expr, course_code))
