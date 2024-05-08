@@ -100,7 +100,7 @@ class Schedule:
         self.schedule = []
         self.save_schedule()
 
-    def drop_class(self):
+    def drop_class(self, code):
         '''Method used to drop a class from the schedule attribute
 
         Args:
@@ -109,7 +109,6 @@ class Schedule:
             listed once.
         '''
         self.load_schedule()
-        code = input('Course code to drop: ').upper()
         for course in self.schedule:
             if course['Course code'] == code:
                 self.schedule.remove(course)
@@ -131,21 +130,37 @@ class Schedule:
             return print('No schedule to display')
 
     def __str__(self):
-        return f"Number of courses in {s1.name}'s schedule: {len(s1)}"
+        return f"Number of courses in {schedule.name}'s schedule: {len(schedule)}"
 
     def __len__(self):
         return len(self.schedule)
 
 
+def options():
+    '''Presents a list of options to the user
+    '''    
+    options = '1. Add a class \n2. Drop a class \n3. Clear your schedule\n4. Display your schedule'
+    print("Select an option:")
+    print(options)
 
-s1 = Schedule('Devin')
-s1.clear_schedule()
-s1.add_class()
-s1.add_class()
-s1.add_class()
-s1.add_class()
-s1.drop_class()
-schedule_df = s1.show_schedule()
-print(schedule_df)
 
-print(s1)
+name = input('What is your name?: ')
+schedule = Schedule(name)
+options()
+choice = (input('Select 1, 2 or 3: '))
+choice = int(choice)
+if choice == 1:
+    schedule.add_class()
+    print('A class was added to your schedule.')
+elif choice == 2:
+    schedule.drop_class(input('What is the course code of the class you would like to drop? '))
+    print('A class was dropped from your schedule.')
+elif choice == 3:
+    schedule.clear_schedule()
+    print('Your schedule has been cleared')
+elif choice == 4:
+    print(schedule.show_schedule())
+else:
+    print('Incorrect input option selected. Try again')
+
+print(schedule)
