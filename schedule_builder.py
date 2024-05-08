@@ -123,9 +123,10 @@ class Schedule:
         '''
         if len(self.schedule) != 0:
             organized_schedule = classOrganizer(self.schedule)
-            df = pd.DataFrame(organized_schedule, columns=[
-                              'Course code', 'Credits', 'Days', 'Time'])
-            return df
+            df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits', 
+            'Days', 'Time'])
+            dfsorted = df.groupby('Course code').apply(lambda x: x.iloc[0]).reset_index()
+            return dfsorted
         else:
             return print('No schedule to display')
 
@@ -147,7 +148,7 @@ def options():
 name = input('What is your name?: ')
 schedule = Schedule(name)
 options()
-choice = (input('Select 1, 2 or 3: '))
+choice = (input('Select 1, 2, 3 or 4: '))
 choice = int(choice)
 if choice == 1:
     schedule.add_class()
