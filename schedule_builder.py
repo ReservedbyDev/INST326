@@ -152,9 +152,19 @@ class Schedule:
             return print('No schedule to display')
 
     def __str__(self):
+        """Return a string representation of the number of courses in the schedule.
+
+    Returns:
+        str: A string indicating the number of courses in the schedule for the specified name.
+    """
         return f"Number of courses in {self.name}'s schedule: {len(self.schedule)}"
 
     def __len__(self):
+        """Return the number of courses in the schedule.
+
+    Returns:
+        int: The number of courses in the schedule.
+    """
         return len(self.schedule)
 
 
