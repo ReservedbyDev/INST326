@@ -5,7 +5,7 @@ import os
 
 
 def classOrganizer(schedule):
-    """takes a schedule organizes it and returns it. 
+    """takes a schedule organizes it and returns it. (andy - lambda sorting)
 
     Args:
         schedule (List): A list of scheduled class can show in a pandas df
@@ -93,7 +93,7 @@ class Schedule:
 
     def save_schedule(self):
         '''Saves the student schedule
-            Author: Devin
+            Author: Andy
             Method: json.dump
         '''
         with open(f'{self.name}_schedule.json', 'w') as f2:
