@@ -179,7 +179,7 @@ while True:
     else:
         print('Incorrect input option selected. Try again')
 
-    print(f'Number of courses in {name}\'s schedule.: {len(schedule)}')
+    print(f'Number of courses in {name}\'s schedule: {len(schedule)}')
 
     while True:
         schedule_action = input(
