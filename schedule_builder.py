@@ -31,6 +31,7 @@ class Schedule:
         
         Attributes: schedule(list) = list of dictionaries built from each class
         inputed into the list.
+        Author : Devin 
         '''
         self.name = name
         if not os.path.exists(f"{self.name}_schedule.json"):
@@ -48,6 +49,8 @@ class Schedule:
         
         Returns: 
             bool: True if the input course code is valid, otherwise False.
+        Author : 
+        Method : Devin, list comprehension
         """
         courseid = []
         with open('202008.json', 'r') as f1:
@@ -89,12 +92,16 @@ class Schedule:
 
     def save_schedule(self):
         '''Saves the student schedule
+            Author: Devin
+            Method: json.dump
         '''
         with open(f'{self.name}_schedule.json', 'w') as f2:
             json.dump(self.schedule, f2)
 
     def load_schedule(self):
         '''Loads the student schedule
+            Author: Devin
+            Method: json.load
         '''
         try:
             with open(f"{self.name}_schedule.json", 'r') as file:
@@ -103,8 +110,9 @@ class Schedule:
             self.schedule = []
             print('New schedule created')
 
-    def clear_schedule(self):
+    def clear_schedule(self):  
         '''Method to clear the self.schedule object. 
+            Author: Devin
         '''
         self.load_schedule()
         self.schedule = []
@@ -130,13 +138,13 @@ class Schedule:
     def show_schedule(self):
         '''Takes the schedule object and creates a dataframe object neatly 
         displaying the class schedule for the given student. 
+        Author : Devin
+        Method : pandas df and filtering out duplicates from the student course schedule
         '''
         if len(self.schedule) != 0:
             organized_schedule = classOrganizer(self.schedule)
             df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits',
                                                            'Days', 'Time'])
-            df = pd.DataFrame(organized_schedule, columns=[
-                              'Course code', 'Credits', 'Days', 'Time'])
             dfsorted = df.drop_duplicates(
                 subset='Course code').reset_index(drop=True)
             return dfsorted
@@ -152,6 +160,7 @@ class Schedule:
 
 def options():
     '''Presents a list of options to the user
+    Author : Devin
     '''
     options = '1. Add a class \n2. Drop a class \n3. Clear your schedule\n4. Display your schedule'
     print("Select an option:")
