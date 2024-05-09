@@ -43,6 +43,7 @@ class Schedule:
 
     def coursecode_validation(self, course_code):
         """Validates the course code format while also ensuring that the inputted course code exists in UMD's course catalog.
+        davis - magic method
         
         Args: 
             course_code (str): course code validation.
@@ -152,10 +153,12 @@ class Schedule:
             return print('No schedule to display')
 
     def __str__(self):
-        """Return a string representation of the number of courses in the schedule.
+        """Return a string representation of the number of courses in the schedule. 
+        davis - magic methods
 
     Returns:
         str: A string indicating the number of courses in the schedule for the specified name.
+        davis - magic method
     """
         return f"Number of courses in {self.name}'s schedule: {len(self.schedule)}"
 
