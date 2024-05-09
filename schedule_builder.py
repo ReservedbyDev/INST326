@@ -76,6 +76,17 @@ class Schedule:
 
         self.save_schedule()
 
+        while True:
+            choice = input(
+                "Do you want to add another class? (Y/N): ").strip().lower()
+            if choice == 'y':
+                self.add_class()
+                break
+            elif choice == 'n':
+                return
+            else:
+                print("Not a valid choice. Please enter 'Y' or 'N'.")
+
     def save_schedule(self):
         '''Saves the student schedule
         '''
@@ -149,21 +160,36 @@ def options():
 
 name = input('What is your name?: ')
 schedule = Schedule(name)
-options()
-choice = (input('Select 1, 2, 3 or 4: '))
-choice = int(choice)
-if choice == 1:
-    schedule.add_class()
-    print('A class was added to your schedule.')
-elif choice == 2:
-    schedule.drop_class(input('What is the course code of the class you would like to drop? '))
-    print('A class was dropped from your schedule.')
-elif choice == 3:
-    schedule.clear_schedule()
-    print('Your schedule has been cleared')
-elif choice == 4:
-    print(schedule.show_schedule())
-else:
-    print('Incorrect input option selected. Try again')
+while True:
+    options()
+    choice = (input('Select 1, 2, 3 or 4: '))
+    choice = int(choice)
+    if choice == 1:
+        schedule.add_class()
+        print('A class was added to your schedule.')
+    elif choice == 2:
+        schedule.drop_class(
+            input('What is the course code of the class you would like to drop? '))
+        print('A class was dropped from your schedule.')
+    elif choice == 3:
+        schedule.clear_schedule()
+        print('Your schedule has been cleared')
+    elif choice == 4:
+        print(schedule.show_schedule())
+    else:
+        print('Incorrect input option selected. Try again')
 
-print(schedule)
+    print(f'Number of courses in {name}\'s schedule.: {len(schedule)}')
+
+    while True:
+        schedule_action = input(
+            "Would you like to perform another schedule action? (Y/N): ").strip().lower()
+        if schedule_action == 'y':
+            break
+        elif schedule_action == 'n':
+            exit()
+        else:
+            print("Not a valid choice. Please enter 'Y' or 'N'.")
+
+
+
