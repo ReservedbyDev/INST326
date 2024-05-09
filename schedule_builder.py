@@ -76,6 +76,17 @@ class Schedule:
 
         self.save_schedule()
 
+        while True:
+            choice = input(
+                "Do you want to add another class? (Y/N): ").strip().lower()
+            if choice == 'y':
+                self.add_class()
+                break
+            elif choice == 'n':
+                return
+            else:
+                print("Not a valid choice. Please enter 'Y' or 'N'.")
+
     def save_schedule(self):
         '''Saves the student schedule
         '''
@@ -122,16 +133,18 @@ class Schedule:
         '''
         if len(self.schedule) != 0:
             organized_schedule = classOrganizer(self.schedule)
-            df = pd.DataFrame(organized_schedule, columns=['Course code','Credits', 
-            'Days', 'Time'])
-            df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits', 'Days', 'Time'])
-            dfsorted = df.drop_duplicates(subset='Course code').reset_index(drop=True)
+            df = pd.DataFrame(organized_schedule, columns=['Course code', 'Credits',
+                                                           'Days', 'Time'])
+            df = pd.DataFrame(organized_schedule, columns=[
+                              'Course code', 'Credits', 'Days', 'Time'])
+            dfsorted = df.drop_duplicates(
+                subset='Course code').reset_index(drop=True)
             return dfsorted
         else:
             return print('No schedule to display')
 
     def __str__(self):
-        return f"Number of courses in {schedule.name}'s schedule: {len(schedule)}"
+        return f"Number of courses in {self.name}'s schedule: {len(self.schedule)}"
 
     def __len__(self):
         return len(self.schedule)
@@ -139,7 +152,7 @@ class Schedule:
 
 def options():
     '''Presents a list of options to the user
-    '''    
+    '''
     options = '1. Add a class \n2. Drop a class \n3. Clear your schedule\n4. Display your schedule'
     print("Select an option:")
     print(options)
@@ -147,21 +160,35 @@ def options():
 
 name = input('What is your name?: ')
 schedule = Schedule(name)
-options()
-choice = (input('Select 1, 2, 3 or 4: '))
-choice = int(choice)
-if choice == 1:
-    schedule.add_class()
-    print('A class was added to your schedule.')
-elif choice == 2:
-    schedule.drop_class(input('What is the course code of the class you would like to drop? '))
-    print('A class was dropped from your schedule.')
-elif choice == 3:
-    schedule.clear_schedule()
-    print('Your schedule has been cleared')
-elif choice == 4:
-    print(schedule.show_schedule())
-else:
-    print('Incorrect input option selected. Try again')
+while True:
+    options()
+    choice = (input('Select 1, 2, 3 or 4: '))
+    choice = int(choice)
+    if choice == 1:
+        schedule.add_class()
+        print('A class was added to your schedule.')
+    elif choice == 2:
+        schedule.drop_class(
+            input('What is the course code of the class you would like to drop? '))
+        print('A class was dropped from your schedule.')
+    elif choice == 3:
+        schedule.clear_schedule()
+        print('Your schedule has been cleared')
+    elif choice == 4:
+        print(schedule.show_schedule())
+    else:
+        print('Incorrect input option selected. Try again')
 
-print(schedule)
+    print(f'Number of courses in {name}\'s schedule.: {len(schedule)}')
+
+    while True:
+        schedule_action = input(
+            "Would you like to perform another schedule action? (Y/N): ").strip().lower()
+        if schedule_action == 'y':
+            break
+        elif schedule_action == 'n':
+            exit()
+        else:
+            print("Not a valid choice. Please enter 'Y' or 'N'.")
+
+
